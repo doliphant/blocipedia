@@ -6,6 +6,12 @@ gem 'rails', '4.2.0'
 
 gem 'bootstrap-sass'
 
+#user authentification
+gem 'devise'
+
+
+gem 'figaro', '1.0'
+
 group :production do
   # pg gem hving issues
   # gem 'pg'
