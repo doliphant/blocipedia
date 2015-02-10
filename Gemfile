@@ -3,8 +3,21 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+
+group :production do
+  # pg gem hving issues
+  # gem 'pg'
+  gem 'rails_12factor'
+end
+
+
+group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
+
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,5 +54,16 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem "rspec-rails", "~> 2.10.1"
+  gem "factory_girl_rails", "~> 3.2.0"
+  gem "guard-rspec", "~> 0.7.0"
+
 end
 
+group :test do
+  gem "faker", "~> 1.0.1"
+  gem "capybara", "~> 1.1.2"
+  gem "database_cleaner", "~> 0.7.2"
+  gem "launchy", "~> 2.1.0"
+end
