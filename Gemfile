@@ -13,7 +13,7 @@ gem 'devise'
 gem 'figaro', '1.0'
 
 group :production do
-  # pg gem hving issues
+  # pg gem having issues
   # gem 'pg'
   gem 'rails_12factor'
 end
