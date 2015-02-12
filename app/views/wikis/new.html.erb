@@ -14,9 +14,12 @@
       <div class="form-group">
         <!-- public of private checkbox -->
         <!-- modify view for user membership type -->
+      <% if (current_user.admin? || current_user.premium?) %>
         <%= f.label :private, class: 'checkbox' do %>
           <%= f.check_box :private %> Private Wiki?
         <% end %>
+      <% end %>
+
       </div>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>

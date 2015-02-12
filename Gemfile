@@ -26,6 +26,7 @@ group :development do
   gem 'sqlite3'
 end
 
+gem "faker", "~> 1.0.1"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -71,7 +72,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "faker", "~> 1.0.1"
+  # gem "faker", "~> 1.0.1" included in general file
   gem "capybara", "~> 1.1.2"
   gem "database_cleaner", "~> 0.7.2"
   gem "launchy", "~> 2.1.0"

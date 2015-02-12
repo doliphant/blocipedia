@@ -1,9 +1,16 @@
-<h1>Wikis#show</h1>
-<p>Find me in app/views/wikis/show.html.erb</p>
+<h1>Wiki</h1>
+
 
 <% if policy(Wiki.new).update? %>
   <h1><%= @wiki.title %></h1>
-  <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
-  <%= link_to "Delete Post", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?' } %>
   <p><%= @wiki.body %></p>
+  <small>
+    <i>authored by: <%= @wiki.user.name %></i>
+  </small>
+
+  <br>
+
+  <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+  <%= link_to "Delete Wiki", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?' } %>
+
 <% end %>

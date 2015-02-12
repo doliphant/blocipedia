@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
     role == 'public'
   end
 
-  # sets default role on creation
+  # sets default role on creation if null
   def set_role
-    self.role = 'public'
+    self.role ||= 'public'
   end
 
 end
