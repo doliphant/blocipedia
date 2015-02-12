@@ -6,4 +6,23 @@ class User < ActiveRecord::Base
 
   has_many :wikis
 
+  after_initialize :set_role
+
+  def admin?
+    role == 'admin'
+  end
+
+  def premium?
+    role == 'premium'
+  end
+
+  def public?
+    role == 'public'
+  end
+
+  # sets default role on creation
+  def set_role
+    self.role = 'public'
+  end
+
 end

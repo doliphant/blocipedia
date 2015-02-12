@@ -9,6 +9,8 @@ gem 'bootstrap-sass'
 #user authentification
 gem 'devise'
 
+#authorization
+gem 'pundit'
 
 gem 'figaro', '1.0'
 
