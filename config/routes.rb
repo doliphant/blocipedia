@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
 
-  # get 'wikis/index'
-  # get 'wikis/show'
-  # get 'wikis/new'
-  # get 'wikis/edit'
   resources :wikis
 
   devise_for :users
-  
+
+  # Not sure why I need both of these
+  get 'users/upgrade'
+  resources :users do
+    collection do
+      get "upgrade"
+    end
+    post "toggle_role"
+  end
+
   get 'welcome/index'
 
   root to: 'welcome#index'
