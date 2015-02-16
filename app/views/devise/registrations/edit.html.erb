@@ -32,6 +32,15 @@
   </div>
 <% end %>
 
+<br />
+
+<% if resource.role == 'premium' %>
+  <h3>Cancel premium membership?</h3>
+  <p> <%= button_to "Downgrade to Public", user_go_public_path(resource), data: { confirm: "Return to the Plebeian masses?" }, method: :post, class: 'btn btn success' %> </p>
+<% else %>
+  <p> <%= link_to "Upgrade Today", users_upgrade_path %></p>
+<% end %>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>

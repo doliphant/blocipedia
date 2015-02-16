@@ -5,13 +5,17 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Not sure why I need both of these
-  get 'users/upgrade'
+  get 'users/upgrade' #had to add this back in. refactoring below did not work.
+
   resources :users do
     collection do
       get "upgrade"
     end
     post "toggle_role"
+    post "go_public"
   end
+
+  resources :charges, only: [:new, :create]
 
   get 'welcome/index'
 

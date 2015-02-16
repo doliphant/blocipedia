@@ -12,6 +12,9 @@ gem 'devise'
 #authorization
 gem 'pundit'
 
+#payment
+gem 'stripe'
+
 gem 'figaro', '1.0'
 
 group :production do
