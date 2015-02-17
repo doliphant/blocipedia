@@ -12,6 +12,9 @@ gem 'will_paginate', '~> 3.0.5'
 #user authentification
 gem 'devise'
 
+#markdown
+gem 'redcarpet'
+
 #authorization
 gem 'pundit'
 
