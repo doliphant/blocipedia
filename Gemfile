@@ -6,6 +6,9 @@ gem 'rails', '4.2.0'
 
 gem 'bootstrap-sass'
 
+#pagination
+gem 'will_paginate', '~> 3.0.5'
+
 #user authentification
 gem 'devise'
 

@@ -11,12 +11,10 @@ class UsersController < ApplicationController
     if @user.admin? == 'admin'
       flash[:error] = "User is an admin. No update."
     elsif @user.public?
-      # @user.update_attribute(:role, 'premium')
-      go_premium
+      @user.update_attribute(:role, 'premium')
       flash[:notice] = "User switched from public to premium."
     else
-      # @user.update_attribute(:role, 'public')
-      go_public
+      @user.update_attribute(:role, 'public')
       flash[:notice] = "User switched from premium to public."
     end
     redirect_to users_upgrade_path

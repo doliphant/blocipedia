@@ -10,9 +10,7 @@ class ChargesController < ApplicationController
 
 #creates a new charge. Can i shove the user role update at the bottom of this?
   def create
-
     @amount = 10_00
-
 
     #creating Stripe customer object for unique charge
     customer = Stripe::Customer.create(
@@ -27,7 +25,7 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
-    current_user.update_attribute(:role, 'premium')
+    current_user.update_attributes!( role: 'premium' )
 
     flash[:success] = "Thank you for your payment, #{current_user.email}!"
     redirect_to welcome_index_path

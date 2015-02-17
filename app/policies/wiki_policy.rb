@@ -4,4 +4,8 @@ class WikiPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    (record.private != true) || (user.role == 'admin') || (user.role =='premium')
+  end
+
 end
