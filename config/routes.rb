@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   resources :wikis
+  resources :collaborators, only: [:create, :destroy]
 
   devise_for :users
 
-  # Not sure why I need both of these
   get 'users/upgrade' #had to add this back in. refactoring below did not work.
 
   resources :users do

@@ -1,6 +1,7 @@
-<h1>Wiki</h1>
 
 <%= link_to "Back to wikis", wikis_path %>
+
+<h1>Wiki</h1>
 
 <% if policy(Wiki.new).show? %>
   <h1><%= markdown_to_html @wiki.title %></h1>
