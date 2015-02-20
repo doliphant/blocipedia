@@ -1,7 +1,9 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.default_order.visible_to(current_user).paginate(page: params[:page], per_page: 10)
+    # @wikis = Wiki.default_order.visible_to(current_user).paginate(page: params[:page], per_page: 10)
+    @wikis = policy_scope(Wiki.default_order.paginate(page: params[:page], per_page: 10))
+
     authorize @wikis
   end
 
