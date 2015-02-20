@@ -3,7 +3,7 @@
 
 <h1>Wiki</h1>
 
-<% if policy(Wiki.new).show? %>
+<% if policy(@wiki).show? %>
   <h1><%= markdown_to_html @wiki.title %></h1>
   <p><%= markdown_to_html @wiki.body %></p>
   <small>
@@ -13,7 +13,7 @@
 
   <br>
 
-<% if policy(Wiki.new).update? %>
+<% if policy(@wiki).update? %>
   <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
   <%= link_to "Delete Wiki", [@wiki], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?' } %>
 <% end %>
