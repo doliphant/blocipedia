@@ -20,6 +20,8 @@ class WikisController < ApplicationController
   def create
     @wiki = current_user.wikis.build(params.require(:wiki).permit(:title, :body, :private))
     authorize @wiki
+    # adding owner to collaborator list
+    # collaborator = @wiki.collaborators.build(user_id: current_user.id)
 
     if @wiki.save
       flash[:notice] = "Wiki has been saved."
