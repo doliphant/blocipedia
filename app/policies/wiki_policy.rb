@@ -31,12 +31,11 @@ class WikiPolicy < ApplicationPolicy
         # want to return a scope where user is owner, user is collaborator, and all non-private wikis
 
         # This works but logic is off
-        # scope.where("wikis.user_id = ? OR private = ?", user, false).joins(:collaborators).where("collaborators.user_id = ?", user)
+        scope.where("wikis.user_id = ? OR private = ?", user, false).joins(:collaborators).where("collaborators.user_id = ?", user)
 
         # getting close!!!
         # I think it needs to be on collaborators
-        # Still not seeing
-        scope.joins(:collaborators).where("wikis.user_id = ? OR wikis.private = ? OR collaborators.user_id = ?", user, false, user)
+        # scope.joins(:collaborators).where("wikis.user_id = ? OR wikis.private = ? OR collaborators.user_id = ?", user, false, user)
         # scope.joins(:collaborators).where("wikis.private = ? OR collaborators.user_id = ?", false)
 
         # demorgans attempt
