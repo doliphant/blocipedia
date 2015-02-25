@@ -23,18 +23,14 @@ class WikiPolicy < ApplicationPolicy
     def resolve
 
       if user == nil
-        # scope for no user being signed in
-        scope.where(private: false)
+        scope.where(private: false).order('wikis.created_at DESC')
       elsif user.role == "admin"
         scope.all
       elsif user.role == "premium"
         scope.eager_load(:collaborators)
           .where("wikis.user_id = ? OR private = ? OR collaborators.user_id = ?", user, false, user).order('wikis.created_at DESC')
       else
-        #this covers signed in public users, may be able to get rid of
-        #I think my public and premium users have the same views.
-        scope.where(private: false)
-        #need to add test for collaborator status, should be same as
+        scope.where(private: false).order('wikis.created_at DESC')
       end
     end
 
