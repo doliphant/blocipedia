@@ -28,40 +28,8 @@ class WikiPolicy < ApplicationPolicy
       elsif user.role == "admin"
         scope.all
       elsif user.role == "premium"
-        # want to return a scope where user is owner, user is collaborator, and all non-private wikis
-
-        # This works but logic is off
-        scope.where("wikis.user_id = ? OR private = ?", user, false).joins(:collaborators).where("collaborators.user_id = ?", user)
-
-        # getting close!!!
-        # I think it needs to be on collaborators
-        # scope.joins(:collaborators).where("wikis.user_id = ? OR wikis.private = ? OR collaborators.user_id = ?", user, false, user)
-        # scope.joins(:collaborators).where("wikis.private = ? OR collaborators.user_id = ?", false)
-
-        # demorgans attempt
-        # scope.where.not(scope.where.not(private: false).joins(:collaborators).where.not( collaborators: { user_id: user } ))
-
-
-
-        # this works
-        # scope.joins(:collaborators).where("collaborators.user_id = ?", user)
-        # scope.joins(:collaborators).where( collaborators: {user_id: user } )
-
-        # These two work independently
-        # scope.joins(:collaborators).where(collaborators: { user_id: user } )
-        # scope.where("wikis.user_id = ? OR private = ?", user, false)
-
-        # scope.where(user: user)
-        # scope.where(private: false)
-
-
-        #Arel Attempt
-        # scope.where(
-        #   arel_table[:user_id].eq(:user)
-        #   .or(arel_table[:private].eq(false))
-        #   ).joins(:collaborators)
-        #   .where(arel_table[:user_id].eq(:user))
-
+        scope.eager_load(:collaborators)
+          .where("wikis.user_id = ? OR private = ? OR collaborators.user_id = ?", user, false, user).order('wikis.created_at DESC')
       else
         #this covers signed in public users, may be able to get rid of
         #I think my public and premium users have the same views.
