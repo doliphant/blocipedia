@@ -25,7 +25,7 @@ gem 'figaro', '1.0'
 
 group :production do
   # pg gem having issues
-  # gem 'pg'
+  gem 'pg'
   gem 'rails_12factor'
 end
 
