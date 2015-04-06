@@ -1,7 +1,7 @@
 require 'faker'
 
 #create users
-5.times do
+4.times do
   user = User.new(
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -14,7 +14,7 @@ users = User.all
 
 
 #create wikis
-25.times do
+13.times do
   Wiki.create!(
     user: users.sample,
     title: Faker::Lorem.sentence,
@@ -36,10 +36,19 @@ user.update_attributes!(
 user = User.second
 user.skip_reconfirmation!
 user.update_attributes!(
-  name: 'Oli Premium',
-  email: 'oli.exper@gmail.com',
-  password: 'pewfortest',
+  name: 'Premium User',
+  email: 'premium@example.com',
+  password: 'portfolio',
   role: 'premium'
+)
+
+user = User.third
+user.skip_reconfirmation!
+user.update_attributes!(
+  name: 'public user',
+  email: 'public@example.com',
+  password: 'portfolio',
+  role: 'public'
 )
 
 puts "Seed finished"

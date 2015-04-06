@@ -25,7 +25,7 @@ class WikiPolicy < ApplicationPolicy
       if user == nil
         scope.where(private: false).order('wikis.created_at DESC')
       elsif user.role == "admin"
-        scope.all
+        scope.all.order('wikis.created_at DESC')
       elsif user.role == "premium"
         scope.eager_load(:collaborators)
           .where("wikis.user_id = ? OR private = ? OR collaborators.user_id = ?", user, false, user).order('wikis.created_at DESC')
